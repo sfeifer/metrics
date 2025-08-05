@@ -26,10 +26,14 @@ jobs:
           BRANCH_NAME="sync-ansible-pcp-subtree-$(date +%Y%m%d-%H%M%S)"
           git checkout -b "$BRANCH_NAME"
 
+          BEFORE_COMMIT=$(git rev-parse HEAD)
+          
           git subtree pull --prefix vendor/github.com/performancecopilot/ansible-pcp https://github.com/performancecopilot/ansible-pcp.git HEAD --squash
 
-          if git diff --quiet HEAD~1; then
+          if git diff --quiet "$BEFORE_COMMIT" HEAD; then
             echo "No changes detected, skipping PR creation"
+            git checkout main
+            git branch -D "$BRANCH_NAME"
             exit 0
           fi
           
