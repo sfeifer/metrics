@@ -6,6 +6,7 @@
 [![IRC #pcp](https://img.shields.io/badge/IRC-pcp-blue.svg)](https://web.libera.chat/#pcp)
 [![Github Release](https://img.shields.io/github/release/performancecopilot/ansible-pcp.svg)](https://github.com/performancecopilot/ansible-pcp/releases/latest)
 
+
 A collection containing roles for Performance Co-Pilot (PCP)
 and related software, such as Valkey/Redis and Grafana.
 
