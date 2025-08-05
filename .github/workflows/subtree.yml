@@ -39,8 +39,16 @@ jobs:
           
           git push origin "$BRANCH_NAME"
 
-          gh pr create \
+          PR_URL=$(gh pr create \
             --title "Sync ansible-pcp git subtree" \
             --body "Automated sync of ansible-pcp git subtree from upstream repository. This PR contains the latest changes from https://github.com/sfeifer/ansible-pcp.git" \
             --base main \
-            --head "$BRANCH_NAME"
+            --head "$BRANCH_NAME")
+          
+          echo "Created PR: $PR_URL"
+          
+          # Wait for PR to be fully created
+          sleep 10
+
+          gh pr merge "$PR_URL" --squash --delete-branch
+          echo "PR merged and branch deleted"
