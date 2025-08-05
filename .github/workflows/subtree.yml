@@ -28,7 +28,7 @@ jobs:
 
           BEFORE_COMMIT=$(git rev-parse HEAD)
           
-          git subtree pull --prefix vendor/github.com/performancecopilot/ansible-pcp https://github.com/performancecopilot/ansible-pcp.git HEAD --squash
+          git subtree pull --prefix vendor/github.com/performancecopilot/ansible-pcp https://github.com/sfeifer/ansible-pcp.git HEAD --squash
 
           if git diff --quiet "$BEFORE_COMMIT" HEAD; then
             echo "No changes detected, skipping PR creation"
@@ -41,6 +41,6 @@ jobs:
 
           gh pr create \
             --title "Sync ansible-pcp git subtree" \
-            --body "Automated sync of ansible-pcp git subtree from upstream repository. This PR contains the latest changes from https://github.com/performancecopilot/ansible-pcp" \
+            --body "Automated sync of ansible-pcp git subtree from upstream repository. This PR contains the latest changes from https://github.com/sfeifer/ansible-pcp.git" \
             --base main \
             --head "$BRANCH_NAME"
